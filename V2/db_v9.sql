@@ -189,6 +189,7 @@ CREATE TABLE IF NOT EXISTS `ocpizza`.`pizza_purchase` (
   `pizza_unit` INT NOT NULL,
   `pizza_id` INT UNSIGNED NOT NULL,
   `purchase_id` INT UNSIGNED NOT NULL,
+  `unit_price` DECIMAL(4,2) NOT NULL,
   PRIMARY KEY (`id`, `pizza_id`, `purchase_id`),
   CONSTRAINT `fk_pizza_purchase_pizza_id`
     FOREIGN KEY (`pizza_id`)
