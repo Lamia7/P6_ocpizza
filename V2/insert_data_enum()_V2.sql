@@ -146,6 +146,10 @@ VALUES
 ('2020-06-26 12:38:11', '12.00', 4, 2, 8, 'EMPORTER', 'Espèces', 'En attente de retrait', 'Paiement en attente'),
 ('2020-06-26 20:34:09', '30.00', 1, 1, 7, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
 ('2020-06-26 20:37:09', '36.00', 2, 3, 11, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué')
+INSERT INTO purchase
+(purchase_date, total_price, client_id, restaurant_id, address_id, delivery_method, payment_method, purchase_status, payment_status)
+VALUES
+('2020-06-26 20:40:55', '13.00', 2, 3, 11, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué')
 ;
 
 
@@ -168,6 +172,8 @@ INSERT INTO pizza_purchase (pizza_unit, pizza_id, purchase_id) VALUES
 (1, 3, 12),
 (1, 1, 13),
 (2, 2, 13)
+INSERT INTO pizza_purchase (pizza_unit, pizza_id, purchase_id, unit_price) VALUES
+(1, 4, 14, '13.00')
 ;
 
 ------------------------------------------------------
