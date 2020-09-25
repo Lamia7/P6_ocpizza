@@ -134,18 +134,18 @@ INSERT INTO purchase
 (purchase_date, total_price, client_id, restaurant_id, address_id, delivery_method, payment_method, purchase_status, payment_status)
 VALUES
 ('2020-06-23 13:01:55', '16.00', 1, 1, 7, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
-('2020-02-12 12:29:14', '14.00', 2, 1, 11, 'EMPORTER', 'Espèces', 'Commande retirée', 'Paiement effectué'),
-('2020-09-29 19:11:55', '12.00', 1, 1, 7, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
-('2020-07-02 19:30:31', '11.00', 3, 2, 6, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
-('2020-07-03 20:30:31', '11.00', 4, 3, 8, 'LIVRER', 'CB', 'Annulée', 'Paiement en attente'),
-('2020-07-03 20:35:42', '12.00', 4, 3, 8, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
-('2020-09-20 12:32:01', '11.00', 2, 4, 11, 'EMPORTER', 'CB', 'En attente de retrait', 'Paiement en attente'),
-('2020-09-20 12:34:13', '12.00', 3, 4, 6, 'EMPORTER', 'Espèces', 'En attente de retrait', 'Paiement en attente'),
-('2020-08-07 12:45:22', '13.00', 6, 5, 12, 'EMPORTER', 'CB', 'Commande retirée', 'Paiement effectué'),
-('2020-07-31 20:51:33', '14.00', 6, 5, 12, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
-('2020-09-20 12:38:11', '12.00', 4, 2, 8, 'EMPORTER', 'Espèces', 'En attente de retrait', 'Paiement en attente'),
-('2020-07-20 20:34:09', '30.00', 1, 1, 7, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
-('2020-07-20 20:34:09', '36.00', 2, 3, 11, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué')
+('2020-06-24 12:29:14', '14.00', 2, 1, 11, 'EMPORTER', 'Espèces', 'Commande retirée', 'Paiement effectué'),
+('2020-06-24 19:11:55', '12.00', 1, 1, 7, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
+('2020-06-24 19:30:31', '11.00', 3, 2, 6, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
+('2020-06-24 20:30:31', '11.00', 4, 3, 8, 'LIVRER', 'CB', 'Annulée', 'Paiement en attente'),
+('2020-06-25 12:35:42', '12.00', 4, 3, 8, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
+('2020-06-25 13:32:01', '11.00', 2, 4, 11, 'EMPORTER', 'CB', 'En attente de retrait', 'Paiement en attente'),
+('2020-06-25 13:34:13', '12.00', 3, 4, 6, 'EMPORTER', 'Espèces', 'En attente de retrait', 'Paiement en attente'),
+('2020-06-25 13:45:22', '13.00', 6, 5, 12, 'EMPORTER', 'CB', 'Commande retirée', 'Paiement effectué'),
+('2020-06-25 20:51:33', '14.00', 6, 5, 12, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
+('2020-06-26 12:38:11', '12.00', 4, 2, 8, 'EMPORTER', 'Espèces', 'En attente de retrait', 'Paiement en attente'),
+('2020-06-26 20:34:09', '30.00', 1, 1, 7, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
+('2020-06-26 20:37:09', '36.00', 2, 3, 11, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué')
 ;
 
 

@@ -81,7 +81,7 @@ WHERE pizza_purchase.pizza_unit > 1;
 -- REQUETES DE MODIF TABLES
 ----------------------------------
 
--- Afficher le contenu d'une commande ()
+-- Afficher le contenu d'une commande
 -- Afficher commandes avec plusieurs pizzas
 
 -- Afficher l'adresse de livraison d'une commande terminée même après que le client ait changé d'adresse
