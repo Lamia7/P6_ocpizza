@@ -28,6 +28,15 @@ RIGHT JOIN pizza
 ON pizza.id = ingredient_pizza.pizza_id
 WHERE pizza.name = '4 fromages';
 
+-- Trouver recette pizza Napolitaine
+SELECT pizza.name AS 'Pizza', ingredient.name AS 'Ingrédient', ingredient_pizza.quantity AS 'Quantité (en grammes)', ingredient_pizza.recipe AS 'Recette'
+FROM ingredient
+LEFT JOIN ingredient_pizza
+ON ingredient.id = ingredient_pizza.ingredient_id
+RIGHT JOIN pizza
+ON pizza.id = ingredient_pizza.pizza_id
+WHERE pizza.name = 'Napolitaine';
+
 -- Supprimer olives de la recette 4 fromages
 DELETE ingredient_pizza.*
 FROM ingredient_pizza
