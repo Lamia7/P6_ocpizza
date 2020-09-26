@@ -97,9 +97,8 @@ RIGHT JOIN purchase
 ON pizza_purchase.purchase_id = purchase.id
 ;
 
-
-
-
+-- Affichée commandes terminées
+SELECT * FROM purchase WHERE purchase.purchase_status = 'Commande livrée' OR purchase.purchase_status = 'Commande retirée';
 
 
 ----------------------------------
@@ -116,8 +115,87 @@ LEFT JOIN purchase
 ON pizza_purchase.purchase_id = purchase.id
 RIGHT JOIN pizza
 ON pizza_purchase.pizza_id = pizza.id
+WHERE SUM(pizza_purchase.pizza_unit) > 1
+;
+
+SELECT pizza_purchase.purchase_id
+FROM pizza_purchase
+WHERE COUNT(*) > 1;
+
+SELECT *
+FROM pizza_purchase
+WHERE pizza_purchase.purchase_id IN
+    (
+        SELECT pizza_purchase.purchase_id
+        FROM pizza_purchase
+        GROUP BY pizza_purchase.purchase_id
+        HAVING COUNT(DISTINCT pizza_purchase.id)>1
+    )
+
+
+SELECT purchase.id AS 'N° commande', pizza_purchase.pizza_unit AS 'Quantité de pizzas', pizza.name AS 'Pizza'
+FROM pizza_purchase
+LEFT JOIN purchase
+ON pizza_purchase.purchase_id = purchase.id
+RIGHT JOIN pizza
+ON pizza_purchase.pizza_id = pizza.id
+WHERE pizza_purchase.purchase_id IN
+    (
+        SELECT pizza_purchase.purchase_id
+        FROM pizza_purchase
+        ORDER BY pizza_purchase.purchase_id
+        HAVING COUNT(DISTINCT pizza_purchase.id)>1
+    )
+
+SELECT purchase.id AS 'N° commande', pizza_purchase.pizza_unit AS 'Quantité de pizzas', pizza.name AS 'Pizza'
+FROM pizza_purchase
+LEFT JOIN purchase
+ON pizza_purchase.purchase_id = purchase.id
+RIGHT JOIN pizza
+ON pizza_purchase.pizza_id = pizza.id
 WHERE pizza_purchase.pizza_unit > 1;
 
+-- Ajout colonne 'address' dans pizza_purchase
+ALTER TABLE purchase
+ADD COLUMN address1 VARCHAR(100) NOT NULL,
+address2 VARCHAR(100) NULL,
+zip_code VARCHAR(5) NOT NULL,
+city VARCHAR(45) NOT NULL;
+
+-- Copier données d'une colonne vers une autre (pour que modifications de prix n'impacte pas les commandes antérieures)
+UPDATE pizza_purchase SET unit_price = (SELECT pizza.price FROM pizza WHERE pizza.id = pizza_purchase.pizza_id);
+
+
+
+
+
+
+-- Afficher commandes terminées avec adresse
+SELECT purchase.id AS 'N° Commande', purchase.purchase_status AS 'Statut', address.address1 AS 'Adresse', address.zip_code AS 'CP', address.city AS 'Ville', purchase.client_id AS 'N° Client'
+FROM purchase
+LEFT JOIN address
+ON purchase.address_id = address.id
+WHERE purchase.purchase_status = 'Commande livrée' OR purchase.purchase_status = 'Commande retirée'
+;
+
+-- Changer adresse d'un client (OK mais l'adresse de la commande a changé pr cmdes 9 et 10)
+UPDATE address
+SET address1 = '32 rue des Perruches', address2 = '', zip_code = '75012'
+WHERE id =
+(
+SELECT address_id
+FROM client
+WHERE client.email = 'charlie24@inlook.com ')
+;
+-------------------
+UPDATE address
+SET address1 = '24 place des Palmiers', address2 = '', zip_code = '75011'
+WHERE id =
+(
+SELECT address_id
+FROM client
+WHERE client.email = 'charlie24@inlook.com ')
+;
 
 
 ----------------------------------
@@ -171,6 +249,32 @@ WHERE
         >
             (
             SELECT ingredient.name, pizza.name, ingredient_pizza.quantity
+            FROM ingredient_pizza
+            LEFT JOIN pizza
+            ON ingredient_pizza.pizza_id = pizza.id
+            RIGHT JOIN ingredient
+            ON ingredient_pizza.ingredient_id = ingredient.id
+            ) LIMIT 10;
+
+----V3---
+SELECT restaurant.name AS 'Restaurant', pizza.name AS 'Pizza'
+FROM pizza_restaurant
+LEFT JOIN pizza
+ON pizza_restaurant.pizza_id = pizza.id
+RIGHT JOIN restaurant
+ON pizza_restaurant.restaurant_id = restaurant.id
+WHERE
+    (
+    SELECT ingredient_restaurant.available_stock
+    FROM ingredient_restaurant
+    LEFT JOIN ingredient
+    ON ingredient_restaurant.ingredient_id = ingredient.id
+    RIGHT JOIN restaurant
+    ON ingredient_restaurant.restaurant_id = restaurant.id
+    )
+        >
+            (
+            SELECT ingredient_pizza.quantity
             FROM ingredient_pizza
             LEFT JOIN pizza
             ON ingredient_pizza.pizza_id = pizza.id
