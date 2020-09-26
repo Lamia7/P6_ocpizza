@@ -107,55 +107,22 @@ SELECT * FROM purchase WHERE purchase.purchase_status = 'Commande livrée' OR pu
 
 -- Changer l'adresse d'un client
 
--- Commandes contenant plusieurs pizzas (plusieurs unités d'une mm pizza cmt faire pour dire plusieurs pizzas ?)
--- créer ligne total_unit dans purchase ? / où pizza_purchase.purchase_id apprrait 2 fois ?
-SELECT purchase.id AS 'N° commande', pizza_purchase.pizza_unit AS 'Quantité de pizzas', pizza.name AS 'Pizza'
+-- Commandes contenant plusieurs pizzas (cmt faire pour trier par purchase_id ?)
+SELECT pizza_purchase.purchase_id AS 'N° commande', pizza_purchase.pizza_unit AS 'Quantité de pizzas', pizza.name AS 'Pizza'
 FROM pizza_purchase
-LEFT JOIN purchase
-ON pizza_purchase.purchase_id = purchase.id
 RIGHT JOIN pizza
 ON pizza_purchase.pizza_id = pizza.id
-WHERE SUM(pizza_purchase.pizza_unit) > 1
-;
-
-SELECT pizza_purchase.purchase_id
-FROM pizza_purchase
-WHERE COUNT(*) > 1;
-
-SELECT *
-FROM pizza_purchase
 WHERE pizza_purchase.purchase_id IN
     (
         SELECT pizza_purchase.purchase_id
         FROM pizza_purchase
         GROUP BY pizza_purchase.purchase_id
         HAVING COUNT(DISTINCT pizza_purchase.id)>1
-    )
+    );
 
 
-SELECT purchase.id AS 'N° commande', pizza_purchase.pizza_unit AS 'Quantité de pizzas', pizza.name AS 'Pizza'
-FROM pizza_purchase
-LEFT JOIN purchase
-ON pizza_purchase.purchase_id = purchase.id
-RIGHT JOIN pizza
-ON pizza_purchase.pizza_id = pizza.id
-WHERE pizza_purchase.purchase_id IN
-    (
-        SELECT pizza_purchase.purchase_id
-        FROM pizza_purchase
-        ORDER BY pizza_purchase.purchase_id
-        HAVING COUNT(DISTINCT pizza_purchase.id)>1
-    )
 
-SELECT purchase.id AS 'N° commande', pizza_purchase.pizza_unit AS 'Quantité de pizzas', pizza.name AS 'Pizza'
-FROM pizza_purchase
-LEFT JOIN purchase
-ON pizza_purchase.purchase_id = purchase.id
-RIGHT JOIN pizza
-ON pizza_purchase.pizza_id = pizza.id
-WHERE pizza_purchase.pizza_unit > 1;
-
--- Ajout colonne 'address' dans pizza_purchase
+-- Ajout colonne 'address' dans purchase
 ALTER TABLE purchase
 ADD COLUMN address1 VARCHAR(100) NOT NULL,
 address2 VARCHAR(100) NULL,
