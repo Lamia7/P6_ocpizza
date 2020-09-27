@@ -110,11 +110,23 @@ ON pizza_purchase.purchase_id = purchase.id
 SELECT * FROM purchase WHERE purchase.purchase_status = 'Commande livrée' OR purchase.purchase_status = 'Commande retirée';
 
 
+------------ Changer adresse d'un client sans changer l'adresse de ses anciennes commandes
+-- ajouter nouvelle adresse dans table asdress
+INSERT INTO address (address1, address2, zip_code, city) VALUES ('10 rue Sollis', '', '75008', 'Paris');
+-- Assigner l'id de la nouvelle adresse d'un client
+UPDATE client SET address_id = 13 WHERE email = 'charlie24@inlook.com';
+-- Afficher commandes terminées avec adresse (celles du client.id = 6 n'ont pas changé d'adresse)
+SELECT purchase.id AS 'N° Commande', purchase.purchase_status AS 'Statut', address.address1 AS 'Adresse', address.zip_code AS 'CP', address.city AS 'Ville', purchase.client_id AS 'N° Client'
+FROM purchase
+LEFT JOIN address
+ON purchase.address_id = address.id
+WHERE purchase.purchase_status = 'Commande livrée' OR purchase.purchase_status = 'Commande retirée'
+;
+
+
 ----------------------------------
 -- REQUETES A TESTER
 ----------------------------------
-
--- Changer l'adresse d'un client
 
 -- Commandes contenant plusieurs pizzas (cmt faire pour trier par purchase_id ?)
 SELECT pizza_purchase.purchase_id AS 'N° commande', pizza_purchase.pizza_unit AS 'Quantité de pizzas', pizza.name AS 'Pizza'
@@ -131,28 +143,7 @@ WHERE pizza_purchase.purchase_id IN
 
 
 
--- Ajout colonne 'address' dans purchase
-ALTER TABLE purchase
-ADD COLUMN address1 VARCHAR(100) NOT NULL,
-address2 VARCHAR(100) NULL,
-zip_code VARCHAR(5) NOT NULL,
-city VARCHAR(45) NOT NULL;
 
--- Copier données d'une colonne vers une autre (pour que modifications de prix n'impacte pas les commandes antérieures)
-UPDATE pizza_purchase SET unit_price = (SELECT pizza.price FROM pizza WHERE pizza.id = pizza_purchase.pizza_id);
-
-
-
-
-
-
--- Afficher commandes terminées avec adresse
-SELECT purchase.id AS 'N° Commande', purchase.purchase_status AS 'Statut', address.address1 AS 'Adresse', address.zip_code AS 'CP', address.city AS 'Ville', purchase.client_id AS 'N° Client'
-FROM purchase
-LEFT JOIN address
-ON purchase.address_id = address.id
-WHERE purchase.purchase_status = 'Commande livrée' OR purchase.purchase_status = 'Commande retirée'
-;
 
 -- Changer adresse d'un client (OK mais l'adresse de la commande a changé pr cmdes 9 et 10)
 UPDATE address

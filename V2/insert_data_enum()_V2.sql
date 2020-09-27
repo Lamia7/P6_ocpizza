@@ -6,7 +6,8 @@ ______________________________________________
 -------------------------------------------------------
 -- INSERT address
 -------------------------------------------------------
-INSERT INTO address (address1, address2, zip_code, city) VALUES ('283 rue des Belles Vues', '', '75011', 'Paris'),
+INSERT INTO address (address1, address2, zip_code, city) VALUES
+('283 rue des Belles Vues', '', '75011', 'Paris'),
 ('5 rue de la Conquista', '', '75012', 'Paris'),
 ('16 avenue des Jules', '', '75013', 'Paris'),
 ('76 rue des Clots', '', '75015', 'Paris'),
@@ -16,7 +17,8 @@ INSERT INTO address (address1, address2, zip_code, city) VALUES ('283 rue des Be
 ('20 allée Jean-Sébastien Bach', '3e étage porte A', '75009', 'Paris')
 ('12 avenue de la Comte', '', '75013', 'Paris'),
 ('28 rue Libergier', '', '75008', 'Paris'),
-('5 rue de Barcelone', '', '75017', 'Paris');
+('5 rue de Barcelone', '', '75017', 'Paris')
+('10 rue Sollis', '', '75008', 'Paris');
 
 -------------------------------------------------------
 -- INSERT restaurant
@@ -55,13 +57,7 @@ INSERT INTO pizza (name, price) VALUES
 ------------------------------------------------------
 -- INSERT client
 -------------------------------------------------------
-INSERT INTO client (last_name, first_name, phone, email, password, address_id) VALUES
-('HAYES', 'Cindy', '0600238947', 'cindy_hayes@jmail.com', 'rc5fjd', 7),
-('BOOKER', 'Adel', '', 'adel.booker@zmail.com', '', 11),
-('HOOD', 'Robin', '', 'robin77@inlook.com', 'lkeand', 6),
-('NOUVIE', 'Bilel', '0693888847', 'bilel-nouvie@inlook.fr', 'chateau77', 8),
-('BELLY', 'Myriam', '', 'myriambelly12@zmail.com', '', 10),
-('BELLY', 'Charlie', '', 'charlie24@inlook.com', '', 12);
+
 
 ------------------------------------------------------
 -- INSERT ingredient_pizza (recipe)
