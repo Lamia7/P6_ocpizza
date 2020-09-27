@@ -123,6 +123,25 @@ ON purchase.address_id = address.id
 WHERE purchase.purchase_status = 'Commande livrée' OR purchase.purchase_status = 'Commande retirée'
 ;
 
+-- Afficher les pizzas pour lesquelles tous les ingrédients sont en stock (selon chaque restaurant)
+SELECT DISTINCT pizza.name AS "Pizzas disponibles"
+FROM pizza
+INNER JOIN ingredient_pizza ON ingredient_pizza.pizza_id = pizza.id
+INNER JOIN ingredient ON ingredient.id = ingredient_pizza.ingredient_id
+INNER JOIN ingredient_restaurant ON ingredient_restaurant.ingredient_id = ingredient.id
+INNER JOIN restaurant ON restaurant.id = ingredient_restaurant.restaurant_id
+WHERE pizza.name NOT IN (
+                SELECT pizza.name
+                FROM pizza
+                INNER JOIN ingredient_pizza ON ingredient_pizza.pizza_id = pizza.id
+                INNER JOIN ingredient ON ingredient.id = ingredient_pizza.ingredient_id
+                INNER JOIN ingredient_restaurant ON ingredient_restaurant.ingredient_id = ingredient.id
+                INNER JOIN restaurant ON restaurant.id = ingredient_restaurant.restaurant_id
+                WHERE restaurant.name = 'La Seine'
+                AND ingredient_restaurant.available_stock - ingredient_pizza.quantity <= 0
+                GROUP BY pizza.name
+                        );
+
 
 ----------------------------------
 -- REQUETES A TESTER
@@ -145,109 +164,14 @@ WHERE pizza_purchase.purchase_id IN
 
 
 
--- Changer adresse d'un client (OK mais l'adresse de la commande a changé pr cmdes 9 et 10)
-UPDATE address
-SET address1 = '32 rue des Perruches', address2 = '', zip_code = '75012'
-WHERE id =
-(
-SELECT address_id
-FROM client
-WHERE client.email = 'charlie24@inlook.com ')
-;
--------------------
-UPDATE address
-SET address1 = '24 place des Palmiers', address2 = '', zip_code = '75011'
-WHERE id =
-(
-SELECT address_id
-FROM client
-WHERE client.email = 'charlie24@inlook.com ')
-;
-
-
 ----------------------------------
 -- REQUETES DE MODIF TABLES
 ----------------------------------
 
 
 
--- Afficher l'adresse de livraison d'une commande terminée même après que le client ait changé d'adresse
 
--- Afficher les pizzas pour lesquelles tous les ingrédients sont en stock ( vérifier que la Q en stock soit supérieur à la Q requise par le recette)
-SELECT restaurant.name AS 'Restaurant', pizza.name AS 'Pizza'
-FROM pizza_restaurant
-LEFT JOIN pizza
-ON pizza_restaurant.pizza_id = pizza.id
-RIGHT JOIN restaurant
-ON pizza_restaurant.restaurant_id = restaurant.id
-WHERE
-(
-SELECT restaurant.name AS 'Restaurant', ingredient_restaurant.available_stock AS 'Stock disponible', ingredient.name AS 'Ingrédient'
-FROM ingredient_restaurant
-LEFT JOIN ingredient
-ON ingredient_restaurant.ingredient_id = ingredient.id
-RIGHT JOIN restaurant
-ON ingredient_restaurant.restaurant_id = restaurant.id
-)
->
-(
-SELECT ingredient.name AS 'Ingrédient', pizza.name AS 'Pizza', ingredient_pizza.quantity AS 'Quantité ingrédient (grammes)'
-FROM ingredient_pizza
-LEFT JOIN pizza
-ON ingredient_pizza.pizza_id = pizza.id
-)
 
-----V2---
-SELECT restaurant.name AS 'Restaurant', pizza.name AS 'Pizza'
-FROM pizza_restaurant
-LEFT JOIN pizza
-ON pizza_restaurant.pizza_id = pizza.id
-RIGHT JOIN restaurant
-ON pizza_restaurant.restaurant_id = restaurant.id
-WHERE
-    (
-    SELECT restaurant.name, ingredient_restaurant.available_stock, ingredient.name
-    FROM ingredient_restaurant
-    LEFT JOIN ingredient
-    ON ingredient_restaurant.ingredient_id = ingredient.id
-    RIGHT JOIN restaurant
-    ON ingredient_restaurant.restaurant_id = restaurant.id
-    )
-        >
-            (
-            SELECT ingredient.name, pizza.name, ingredient_pizza.quantity
-            FROM ingredient_pizza
-            LEFT JOIN pizza
-            ON ingredient_pizza.pizza_id = pizza.id
-            RIGHT JOIN ingredient
-            ON ingredient_pizza.ingredient_id = ingredient.id
-            ) LIMIT 10;
-
-----V3---
-SELECT restaurant.name AS 'Restaurant', pizza.name AS 'Pizza'
-FROM pizza_restaurant
-LEFT JOIN pizza
-ON pizza_restaurant.pizza_id = pizza.id
-RIGHT JOIN restaurant
-ON pizza_restaurant.restaurant_id = restaurant.id
-WHERE
-    (
-    SELECT ingredient_restaurant.available_stock
-    FROM ingredient_restaurant
-    LEFT JOIN ingredient
-    ON ingredient_restaurant.ingredient_id = ingredient.id
-    RIGHT JOIN restaurant
-    ON ingredient_restaurant.restaurant_id = restaurant.id
-    )
-        >
-            (
-            SELECT ingredient_pizza.quantity
-            FROM ingredient_pizza
-            LEFT JOIN pizza
-            ON ingredient_pizza.pizza_id = pizza.id
-            RIGHT JOIN ingredient
-            ON ingredient_pizza.ingredient_id = ingredient.id
-            ) LIMIT 10;
 
 
 -- Afficher les commandes en attente d'un client ?? Pquoi en aurait-il plusieurs en attente en même temps?
