@@ -23,25 +23,35 @@ INSERT INTO address (address1, address2, zip_code, city) VALUES
 -------------------------------------------------------
 -- INSERT restaurant
 -------------------------------------------------------
-INSERT INTO restaurant (name, address_id) VALUES ('La Californienne', 1), ('La Valencienne', 2), ('La Pétillante', 3), ('La Catalane', 4), ('La Seine', 5);
+INSERT INTO restaurant (name, address_id) VALUES ('La Californienne', 1), ('La Valencienne', 2),
+('La Pétillante', 3), ('La Catalane', 4), ('La Seine', 5);
 
 ------------------------------------------------------
 -- INSERT team
 -------------------------------------------------------
-INSERT INTO team (last_name, first_name, phone, email, password, role, restaurant_id) VALUES ('ELREY', 'Nabill', '0611223345', 'nabill_elrey@ocpizza.com', 'gpeiob09', 'Responsable', 1),
-('SY', 'Aby', '0688345678', 'aby_sy@ocpizza.com', 'dhhvdkgi', 'Pizzaïolo', '1'), ('GRANTI', 'Baptiste', '0699345618', 'baptise_granti@ocpizza.com', 'mlfnuis2', 'Livreur', '1'),
-('ELSOL', 'Amelle', '0678162209', 'amelle_elsol@ocpizza.com', 'discn38', 'Responsable', '2'), ('JAPAGNE', 'Viviane', '0634660056', 'viviane_japagne@ocpizza.com', 'tunhme4', 'Pizzaïolo', '2'),
-('TAMARU', 'Victor', '0611421156', 'victor_tamaru@ocpizza.com', 'neuddh45', 'Livreur', '2'), ('BROWN', 'Farida', '0691338901', 'farida_brown@ocpizza.com', 'numpi93', 'Responsable', '3'),
-('BEGUR', 'Jordi', '0656112978', 'jordi_begur@ocpizza.com', 'mappzao33', 'Pizzaïolo', '3'), ('ROSSEL', 'Gabi', '0600843781', 'gaby_rossel@ocpizza.com', 'pmjekzi74', 'Livreur', '3'),
-('SOTTO', 'Samira', '0600290335', 'samira_sotto@ocpizza.com', 'tyni6P', 'Responsable', '4'), ('SONRISA', 'Malina', '0610103456', 'malina_sonrisa@ocpizza.com', 'sqfsny43', 'Pizzaïolo', '4'),
-('LASSO', 'Ines', '0612780007', 'ines_lasso@ocpizza.com', 'cnsiur12', 'Livreur', '4'), ('AHLEMI', 'Nora', '0671918902', 'nora_ahlemi@ocpizza.com', 'urezucr', 'Responsable', '5'),
-('ORSICA', 'Marie-Ange', '0678112020', 'marieange_orsica@ocpizza.com', 'mahjnd02', 'Pizzaïolo', '5'), ('SCAVO', 'Tom', '0688664242', 'tom_scavo@ocpizza.com', 'cvcvbe22', 'Livreur', '5');
+INSERT INTO team (last_name, first_name, phone, email, password, role, restaurant_id) VALUES
+('ELREY', 'Nabill', '0611223345', 'nabill_elrey@ocpizza.com', 'gpeiob09', 'Responsable', 1),
+('SY', 'Aby', '0688345678', 'aby_sy@ocpizza.com', 'dhhvdkgi', 'Pizzaïolo', '1'),
+('GRANTI', 'Baptiste', '0699345618', 'baptise_granti@ocpizza.com', 'mlfnuis2', 'Livreur', '1'),
+('ELSOL', 'Amelle', '0678162209', 'amelle_elsol@ocpizza.com', 'discn38', 'Responsable', '2'),
+('JAPAGNE', 'Viviane', '0634660056', 'viviane_japagne@ocpizza.com', 'tunhme4', 'Pizzaïolo', '2'),
+('TAMARU', 'Victor', '0611421156', 'victor_tamaru@ocpizza.com', 'neuddh45', 'Livreur', '2'),
+('BROWN', 'Farida', '0691338901', 'farida_brown@ocpizza.com', 'numpi93', 'Responsable', '3'),
+('BEGUR', 'Jordi', '0656112978', 'jordi_begur@ocpizza.com', 'mappzao33', 'Pizzaïolo', '3'),
+('ROSSEL', 'Gabi', '0600843781', 'gaby_rossel@ocpizza.com', 'pmjekzi74', 'Livreur', '3'),
+('SOTTO', 'Samira', '0600290335', 'samira_sotto@ocpizza.com', 'tyni6P', 'Responsable', '4'),
+('SONRISA', 'Malina', '0610103456', 'malina_sonrisa@ocpizza.com', 'sqfsny43', 'Pizzaïolo', '4'),
+('LASSO', 'Ines', '0612780007', 'ines_lasso@ocpizza.com', 'cnsiur12', 'Livreur', '4'),
+('AHLEMI', 'Nora', '0671918902', 'nora_ahlemi@ocpizza.com', 'urezucr', 'Responsable', '5'),
+('ORSICA', 'Marie-Ange', '0678112020', 'marieange_orsica@ocpizza.com', 'mahjnd02', 'Pizzaïolo', '5'),
+('SCAVO', 'Tom', '0688664242', 'tom_scavo@ocpizza.com', 'cvcvbe22', 'Livreur', '5');
 
 ------------------------------------------------------
 -- INSERT ingredient
 -------------------------------------------------------
 
-INSERT INTO ingredient (name) VALUES ('sauce tomate'),('mozzarella'), ('olives'), ('anchois'), ('origan'), ('poivrons'), ('gorgonzola'), ('emmental'), ('basilic'), ('aubergines'), ('courgettes'),
+INSERT INTO ingredient (name) VALUES ('sauce tomate'),('mozzarella'), ('olives'), ('anchois'), ('origan'), ('poivrons'),
+('gorgonzola'), ('emmental'), ('basilic'), ('aubergines'), ('courgettes'),
 ('fromage de chèvre'), ('calamars'), ('crevettes'), ('oignons');
 
 -------------------------------------------------------
@@ -57,7 +67,14 @@ INSERT INTO pizza (name, price) VALUES
 ------------------------------------------------------
 -- INSERT client
 -------------------------------------------------------
-
+INSERT INTO client(last_name, first_name, phone, email, password, address_id) VALUES
+('HAYES', 'Cindy', '0600238947', 'cindy_hayes@jmail.com', 'rc5fjd', 7),
+('BOOKER', 'Adel', '', 'adel.booker@zmail.com', '', 11),
+('HOOD', 'Robin', '', 'robin77@inlook.com', 'lkeand', 6),
+('NOUVIE', 'Bilel', '069388847', 'bilel-nouvie@inlook.fr', 'chateau77', 8),
+('BELLY', 'Myriam', '', 'myriambelly12@zmail.com', '', 10),
+('BELLY', 'Charlie', '', 'charlie24@inlook.com', '', 12)
+;
 
 ------------------------------------------------------
 -- INSERT ingredient_pizza (recipe)
@@ -141,10 +158,7 @@ VALUES
 ('2020-06-25 20:51:33', '14.00', 6, 5, 12, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
 ('2020-06-26 12:38:11', '12.00', 4, 2, 8, 'EMPORTER', 'Espèces', 'En attente de retrait', 'Paiement en attente'),
 ('2020-06-26 20:34:09', '30.00', 1, 1, 7, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
-('2020-06-26 20:37:09', '36.00', 2, 3, 11, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué')
-INSERT INTO purchase
-(purchase_date, total_price, client_id, restaurant_id, address_id, delivery_method, payment_method, purchase_status, payment_status)
-VALUES
+('2020-06-26 20:37:09', '36.00', 2, 3, 11, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
 ('2020-06-26 20:40:55', '13.00', 2, 3, 11, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué')
 ;
 
@@ -153,22 +167,21 @@ VALUES
 -- INSERT pizza_purchase
 -------------------------------------------------------
 INSERT INTO pizza_purchase (pizza_unit, pizza_id, purchase_id) VALUES
-(1, 3, 1),
-(1, 1, 2),
-(1, 4, 3),
-(1, 2, 4),
-(1, 2, 5),
-(1, 4, 6),
-(1, 2, 7),
-(1, 4, 8),
-(1, 5, 9),
-(1, 1, 10),
-(1, 4, 11),
-(1, 1, 12),
-(1, 3, 12),
-(1, 1, 13),
-(2, 2, 13)
-INSERT INTO pizza_purchase (pizza_unit, pizza_id, purchase_id, unit_price) VALUES
+(1, 3, 1, '16.00'),
+(1, 1, 2, '14.00'),
+(1, 4, 3, '12.00'),
+(1, 2, 4, '11.00'),
+(1, 2, 5, '11.00'),
+(1, 4, 6, '12.00'),
+(1, 2, 7, '11.00'),
+(1, 4, 8, '12.00'),
+(1, 5, 9, '13.00'),
+(1, 1, 10, '14.00'),
+(1, 4, 11, '12.00'),
+(1, 1, 12, '14.00'),
+(1, 3, 12, '16.00'),
+(1, 1, 13, '14.00'),
+(2, 2, 13, '11.00'),
 (1, 4, 14, '13.00')
 ;
 
