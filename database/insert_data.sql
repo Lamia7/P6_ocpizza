@@ -208,8 +208,9 @@ ______________________________________________
 -------------------------
 -------------------------
 --Supprimer table malgrè foreign_keys
-SET FOREIGN_KEY_CHECKS = 0; DROP TABLE '';
+--SET FOREIGN_KEY_CHECKS = 0; DROP TABLE '';
+
 --Vider table malgré foreign_keys et reset 0
-SET FOREIGN_KEY_CHECKS = 0; TRUNCATE TABLE '';
+--SET FOREIGN_KEY_CHECKS = 0; TRUNCATE TABLE '';
 
 

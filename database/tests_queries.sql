@@ -192,12 +192,14 @@ WHERE pizza_purchase.purchase_id IN
 
 
 -- Add AUTO INCREMENT
-ALTER TABLE ingredient_restaurant MODIFY id INT UNSIGNED NOT NULL AUTO_INCREMENT;
+--ALTER TABLE ingredient_restaurant MODIFY id INT UNSIGNED NOT NULL AUTO_INCREMENT;
+
 -- Rename column
-ALTER TABLE purchase CHANGE date purchase_date DATETIME NOT NULL;
+--ALTER TABLE purchase CHANGE date purchase_date DATETIME NOT NULL;
+
 -- Obtenir date et heure actuelle
-SELECT NOW();
+--SELECT NOW();
 
 -- Ajout prix
-ALTER TABLE pizza_purchase ADD COLUMN price DECIMAL(4,2) NOT NULL;
-ALTER TABLE pizza_purchase CHANGE price unit_price DECIMAL(4,2) NOT NULL;
+--ALTER TABLE pizza_purchase ADD COLUMN price DECIMAL(4,2) NOT NULL;
+--ALTER TABLE pizza_purchase CHANGE price unit_price DECIMAL(4,2) NOT NULL;
