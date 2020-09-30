@@ -120,8 +120,22 @@ SELECT purchase.id AS 'N° Commande', purchase.purchase_status AS 'Statut', addr
 FROM purchase
 LEFT JOIN address
 ON purchase.address_id = address.id
-WHERE purchase.purchase_status = 'Commande livrée' OR purchase.purchase_status = 'Commande retirée'
-;
+WHERE purchase.purchase_status = 'Commande livrée' OR purchase.purchase_status = 'Commande retirée';
+'OU'
+-- Afficher commandes terminées avec adresse du client 6
+SELECT purchase.id AS 'N° Commande', purchase.purchase_status AS 'Statut', address.address1 AS 'Adresse', address.zip_code AS 'CP', address.city AS 'Ville', purchase.client_id AS 'N° Client'
+FROM purchase
+LEFT JOIN address
+ON purchase.address_id = address.id
+WHERE (purchase.purchase_status = 'Commande livrée' OR purchase.purchase_status = 'Commande retirée' ) AND purchase.client_id = 6;
+-- Afficher l'adresse d'un client
+SELECT client.id AS 'N° client', client.last_name AS 'Nom', client.first_name AS 'Prénom', address.id AS 'N° Adresse',
+CONCAT(address.address1, '-', address.address2, ' ', address.zip_code, ' ', address.city) AS 'Adresse complète'
+FROM address
+INNER JOIN client
+ON address.id = client.address_id
+WHERE client.email = 'charlie24@inlook.com';
+
 
 -- Afficher les pizzas pour lesquelles tous les ingrédients sont en stock (selon chaque restaurant)
 SELECT DISTINCT pizza.name AS "Pizzas disponibles"
