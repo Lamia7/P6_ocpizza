@@ -1,8 +1,8 @@
 USE ocpizza;
 
--------------------------------------------------------
+--
 -- INSERT address
--------------------------------------------------------
+--
 INSERT INTO address (address1, address2, zip_code, city) VALUES
 ('283 rue des Belles Vues', '', '75011', 'Paris'),
 ('5 rue de la Conquista', '', '75012', 'Paris'),
@@ -17,15 +17,15 @@ INSERT INTO address (address1, address2, zip_code, city) VALUES
 ('5 rue de Barcelone', '', '75017', 'Paris'),
 ('10 rue Sollis', '', '75008', 'Paris');
 
--------------------------------------------------------
+--
 -- INSERT restaurant
--------------------------------------------------------
+--
 INSERT INTO restaurant (name, address_id) VALUES ('La Californienne', 1), ('La Valencienne', 2),
 ('La Pétillante', 3), ('La Catalane', 4), ('La Seine', 5);
 
-------------------------------------------------------
+--
 -- INSERT team
--------------------------------------------------------
+--
 INSERT INTO team (last_name, first_name, phone, email, password, role, restaurant_id) VALUES
 ('ELREY', 'Nabill', '0611223345', 'nabill_elrey@ocpizza.com', 'gpeiob09', 'Responsable', 1),
 ('SY', 'Aby', '0688345678', 'aby_sy@ocpizza.com', 'dhhvdkgi', 'Pizzaïolo', '1'),
@@ -43,17 +43,16 @@ INSERT INTO team (last_name, first_name, phone, email, password, role, restauran
 ('ORSICA', 'Marie-Ange', '0678112020', 'marieange_orsica@ocpizza.com', 'mahjnd02', 'Pizzaïolo', '5'),
 ('SCAVO', 'Tom', '0688664242', 'tom_scavo@ocpizza.com', 'cvcvbe22', 'Livreur', '5');
 
-------------------------------------------------------
+--
 -- INSERT ingredient
--------------------------------------------------------
-
+--
 INSERT INTO ingredient (name) VALUES ('sauce tomate'),('mozzarella'), ('olives'), ('anchois'), ('origan'), ('poivrons'),
 ('gorgonzola'), ('emmental'), ('basilic'), ('aubergines'), ('courgettes'),
 ('fromage de chèvre'), ('calamars'), ('crevettes'), ('oignons');
 
--------------------------------------------------------
+--
 -- INSERT pizza
--------------------------------------------------------
+--
 INSERT INTO pizza (name, price) VALUES
 ('4 fromages', '14.00'),
 ('Margarita', '11.00'),
@@ -61,9 +60,9 @@ INSERT INTO pizza (name, price) VALUES
 ('Végétarienne', '12.00'),
 ('Napolitaine', '13.00');
 
-------------------------------------------------------
+--
 -- INSERT client
--------------------------------------------------------
+--
 INSERT INTO client(last_name, first_name, phone, email, password, address_id) VALUES
 ('HAYES', 'Cindy', '0600238947', 'cindy_hayes@jmail.com', 'rc5fjd', 7),
 ('BOOKER', 'Adel', '', 'adel.booker@zmail.com', '', 11),
@@ -72,9 +71,9 @@ INSERT INTO client(last_name, first_name, phone, email, password, address_id) VA
 ('BELLY', 'Myriam', '', 'myriambelly12@zmail.com', '', 10),
 ('BELLY', 'Charlie', '', 'charlie24@inlook.com', '', 12);
 
-------------------------------------------------------
+--
 -- INSERT ingredient_pizza (recipe)
--------------------------------------------------------
+--
 INSERT INTO ingredient_pizza (recipe, quantity, ingredient_id, pizza_id) VALUES
 ('Etaler la pâte. Ajouter la garniture. Mettre au four à 350°C pendant 10mn', '200', '1', '1'),
 ('Etaler la pâte. Ajouter la garniture. Mettre au four à 350°C pendant 10mn', '20', '2', '1'),
@@ -108,9 +107,9 @@ INSERT INTO ingredient_pizza (recipe, quantity, ingredient_id, pizza_id) VALUES
 ('Etaler la pâte. Ajouter la garniture. Mettre au four à 350°C pendant 15mn', '90', '4', '5'),
 ('Etaler la pâte. Ajouter la garniture. Mettre au four à 350°C pendant 15mn', '10', '5', '5');
 
-------------------------------------------------------
+--
 -- INSERT ingredient_restaurant (stock ingredient)
--------------------------------------------------------
+--
 INSERT INTO ingredient_restaurant (available_stock, restaurant_id, ingredient_id) VALUES
 ('30000', '1', '1'), ('10000', '1', '2'), ('5000', '1', '3'), ('3000', '1', '4'), ('800', '1', '5'),
 ('4000', '1', '6'), ('2000', '1', '7'), ('2000', '1', '8'), ('700', '1', '9'), ('3000', '1', '10'),
@@ -133,9 +132,9 @@ INSERT INTO ingredient_restaurant (available_stock, restaurant_id, ingredient_id
 ('2000', '5', '11'), ('2000', '5', '12'), ('2000', '5', '13'), ('1000', '5', '14'), ('2000', '5', '15');
 
 
-------------------------------------------------------
+--
 -- INSERT purchase
--------------------------------------------------------
+--
 
 INSERT INTO purchase
 (purchase_date, total_price, client_id, restaurant_id, address_id, delivery_method, payment_method, purchase_status, payment_status)
@@ -156,9 +155,9 @@ VALUES
 ('2020-06-26 20:40:55', '13.00', 2, 3, 11, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué');
 
 
-------------------------------------------------------
+--
 -- INSERT pizza_purchase
--------------------------------------------------------
+--
 INSERT INTO pizza_purchase (pizza_unit, pizza_id, purchase_id, unit_price) VALUES
 (1, 3, 1, '16.00'),
 (1, 1, 2, '14.00'),
@@ -177,10 +176,10 @@ INSERT INTO pizza_purchase (pizza_unit, pizza_id, purchase_id, unit_price) VALUE
 (2, 2, 13, '11.00'),
 (1, 4, 14, '13.00');
 
-------------------------------------------------------
+--
 -- INSERT pizza_restaurant (stock_pizza)
 -- chaque ligne = resto
--------------------------------------------------------
+--
 INSERT INTO pizza_restaurant (available_amount, pizza_id, restaurant_id) VALUES
 (40, 1, 1), (35, 2, 1), (20, 3, 1), (30, 4, 1), (20, 5, 1),
 (30, 1, 2), (40, 2, 2), (20, 3, 2), (20, 4, 2), (20, 5, 2),

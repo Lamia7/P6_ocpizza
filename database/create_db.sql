@@ -1,21 +1,21 @@
---SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
---SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
---SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+-- SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+-- SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+-- SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
--- -----------------------------------------------------
+--
 -- Schema ocpizza
--- -----------------------------------------------------
+--
 DROP SCHEMA IF EXISTS `ocpizza` ;
 
--- -----------------------------------------------------
+--
 -- Schema ocpizza
--- -----------------------------------------------------
+--
 CREATE SCHEMA IF NOT EXISTS `ocpizza` DEFAULT CHARACTER SET utf8mb4 ;
-USE `ocpizza` ;
+USE ocpizza;
 
--- -----------------------------------------------------
+--
 -- Table `ocpizza`.`address`
--- -----------------------------------------------------
+--
 CREATE TABLE IF NOT EXISTS `ocpizza`.`address` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `address1` VARCHAR(100) NOT NULL,
@@ -28,9 +28,9 @@ ENGINE = InnoDB;
 CREATE INDEX `by_city_idx` ON `ocpizza`.`address` (`city` ASC);
 
 
--- -----------------------------------------------------
+--
 -- Table `ocpizza`.`restaurant`
--- -----------------------------------------------------
+--
 CREATE TABLE IF NOT EXISTS `ocpizza`.`restaurant` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(80) NOT NULL,
@@ -48,9 +48,9 @@ CREATE INDEX `by_address_idx` ON `ocpizza`.`restaurant` (`address_id` ASC);
 CREATE UNIQUE INDEX `name_UNIQUE` ON `ocpizza`.`restaurant` (`name` ASC);
 
 
--- -----------------------------------------------------
+--
 -- Table `ocpizza`.`client`
--- -----------------------------------------------------
+--
 CREATE TABLE IF NOT EXISTS `ocpizza`.`client` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `last_name` VARCHAR(45) NOT NULL,
@@ -74,9 +74,9 @@ CREATE INDEX `by_last_name_idx` ON `ocpizza`.`client` (`last_name` ASC);
 CREATE UNIQUE INDEX `email_UNIQUE` ON `ocpizza`.`client` (`email` ASC);
 
 
--- -----------------------------------------------------
+--
 -- Table `ocpizza`.`purchase`
--- -----------------------------------------------------
+--
 CREATE TABLE IF NOT EXISTS `ocpizza`.`purchase` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `purchase_date` DATETIME NOT NULL,
@@ -117,9 +117,9 @@ CREATE INDEX `by_address_idx` ON `ocpizza`.`purchase` (`address_id` ASC);
 CREATE INDEX `by_date_idx` ON `ocpizza`.`purchase` (`purchase_date` ASC);
 
 
--- -----------------------------------------------------
+--
 -- Table `ocpizza`.`pizza`
--- -----------------------------------------------------
+--
 CREATE TABLE IF NOT EXISTS `ocpizza`.`pizza` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
@@ -132,9 +132,9 @@ CREATE INDEX `by_price_idx` ON `ocpizza`.`pizza` (`price` ASC);
 CREATE UNIQUE INDEX `name_UNIQUE` ON `ocpizza`.`pizza` (`name` ASC);
 
 
--- -----------------------------------------------------
+--
 -- Table `ocpizza`.`ingredient`
--- -----------------------------------------------------
+--
 CREATE TABLE IF NOT EXISTS `ocpizza`.`ingredient` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(80) NOT NULL,
@@ -144,9 +144,9 @@ ENGINE = InnoDB;
 CREATE UNIQUE INDEX `name_UNIQUE` ON `ocpizza`.`ingredient` (`name` ASC);
 
 
--- -----------------------------------------------------
+--
 -- Table `ocpizza`.`ingredient_pizza`
--- -----------------------------------------------------
+--
 CREATE TABLE IF NOT EXISTS `ocpizza`.`ingredient_pizza` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `recipe` TEXT(500) NOT NULL,
@@ -171,9 +171,9 @@ CREATE INDEX `by_ingredient_idx` ON `ocpizza`.`ingredient_pizza` (`ingredient_id
 CREATE INDEX `by_pizza_idx` ON `ocpizza`.`ingredient_pizza` (`pizza_id` ASC);
 
 
--- -----------------------------------------------------
+--
 -- Table `ocpizza`.`pizza_purchase`
--- -----------------------------------------------------
+--
 CREATE TABLE IF NOT EXISTS `ocpizza`.`pizza_purchase` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `pizza_unit` INT NOT NULL,
@@ -198,9 +198,9 @@ CREATE INDEX `by_pizza_idx` ON `ocpizza`.`pizza_purchase` (`pizza_id` ASC);
 CREATE INDEX `by_purchase_idx` ON `ocpizza`.`pizza_purchase` (`purchase_id` ASC);
 
 
--- -----------------------------------------------------
+--
 -- Table `ocpizza`.`team`
--- -----------------------------------------------------
+--
 CREATE TABLE IF NOT EXISTS `ocpizza`.`team` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `last_name` VARCHAR(45) NOT NULL,
@@ -223,9 +223,9 @@ CREATE INDEX `by_restaurant_idx` ON `ocpizza`.`team` (`restaurant_id` ASC);
 CREATE UNIQUE INDEX `email_UNIQUE` ON `ocpizza`.`team` (`email` ASC);
 
 
--- -----------------------------------------------------
+--
 -- Table `ocpizza`.`ingredient_restaurant`
--- -----------------------------------------------------
+--
 CREATE TABLE IF NOT EXISTS `ocpizza`.`ingredient_restaurant` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `available_stock` INT NOT NULL,
@@ -249,9 +249,9 @@ CREATE INDEX `by_ingredient_idx` ON `ocpizza`.`ingredient_restaurant` (`ingredie
 CREATE INDEX `by_restaurant_idx` ON `ocpizza`.`ingredient_restaurant` (`restaurant_id` ASC);
 
 
--- -----------------------------------------------------
+--
 -- Table `ocpizza`.`pizza_restaurant`
--- -----------------------------------------------------
+--
 CREATE TABLE IF NOT EXISTS `ocpizza`.`pizza_restaurant` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `available_amount` INT UNSIGNED NOT NULL,
@@ -275,6 +275,6 @@ CREATE INDEX `by_restaurant_idx` ON `ocpizza`.`pizza_restaurant` (`restaurant_id
 CREATE INDEX `by_pizza_idx` ON `ocpizza`.`pizza_restaurant` (`pizza_id` ASC);
 
 
---SET SQL_MODE=@OLD_SQL_MODE;
---SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
---SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- SET SQL_MODE=@OLD_SQL_MODE;
+-- SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+-- SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
