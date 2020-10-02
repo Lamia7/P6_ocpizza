@@ -1,7 +1,4 @@
-______________________________________________
---INSEREES
-______________________________________________
-
+USE ocpizza;
 
 -------------------------------------------------------
 -- INSERT address
@@ -14,10 +11,10 @@ INSERT INTO address (address1, address2, zip_code, city) VALUES
 ('34 boulevard des Champs', '', '75020', 'Paris'),
 ('4 rue de l\'Excelsior', '', '92600', 'Asnières-sur-Seine'),
 ('27 avenue de Pratibha', 'Appt 15', '75016', 'Paris'),
-('20 allée Jean-Sébastien Bach', '3e étage porte A', '75009', 'Paris')
+('20 allée Jean-Sébastien Bach', '3e étage porte A', '75009', 'Paris'),
 ('12 avenue de la Comte', '', '75013', 'Paris'),
 ('28 rue Libergier', '', '75008', 'Paris'),
-('5 rue de Barcelone', '', '75017', 'Paris')
+('5 rue de Barcelone', '', '75017', 'Paris'),
 ('10 rue Sollis', '', '75008', 'Paris');
 
 -------------------------------------------------------
@@ -73,8 +70,7 @@ INSERT INTO client(last_name, first_name, phone, email, password, address_id) VA
 ('HOOD', 'Robin', '', 'robin77@inlook.com', 'lkeand', 6),
 ('NOUVIE', 'Bilel', '069388847', 'bilel-nouvie@inlook.fr', 'chateau77', 8),
 ('BELLY', 'Myriam', '', 'myriambelly12@zmail.com', '', 10),
-('BELLY', 'Charlie', '', 'charlie24@inlook.com', '', 12)
-;
+('BELLY', 'Charlie', '', 'charlie24@inlook.com', '', 12);
 
 ------------------------------------------------------
 -- INSERT ingredient_pizza (recipe)
@@ -110,8 +106,7 @@ INSERT INTO ingredient_pizza (recipe, quantity, ingredient_id, pizza_id) VALUES
 ('Etaler la pâte. Ajouter la garniture. Mettre au four à 350°C pendant 15mn', '125', '2', '5'),
 ('Etaler la pâte. Ajouter la garniture. Mettre au four à 350°C pendant 15mn', '10', '3', '5'),
 ('Etaler la pâte. Ajouter la garniture. Mettre au four à 350°C pendant 15mn', '90', '4', '5'),
-('Etaler la pâte. Ajouter la garniture. Mettre au four à 350°C pendant 15mn', '10', '5', '5')
-;
+('Etaler la pâte. Ajouter la garniture. Mettre au four à 350°C pendant 15mn', '10', '5', '5');
 
 ------------------------------------------------------
 -- INSERT ingredient_restaurant (stock ingredient)
@@ -135,8 +130,7 @@ INSERT INTO ingredient_restaurant (available_stock, restaurant_id, ingredient_id
 
 ('15000', '5', '1'), ('6000', '5', '2'), ('1000', '5', '3'), ('1500', '5', '4'), ('800', '5', '5'),
 ('3000', '5', '6'), ('2000', '5', '7'), ('2000', '5', '8'), ('1000', '5', '9'), ('3000', '5', '10'),
-('2000', '5', '11'), ('2000', '5', '12'), ('2000', '5', '13'), ('1000', '5', '14'), ('2000', '5', '15')
-;
+('2000', '5', '11'), ('2000', '5', '12'), ('2000', '5', '13'), ('1000', '5', '14'), ('2000', '5', '15');
 
 
 ------------------------------------------------------
@@ -159,14 +153,13 @@ VALUES
 ('2020-06-26 12:38:11', '12.00', 4, 2, 8, 'EMPORTER', 'Espèces', 'En attente de retrait', 'Paiement en attente'),
 ('2020-06-26 20:34:09', '30.00', 1, 1, 7, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
 ('2020-06-26 20:37:09', '36.00', 2, 3, 11, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué'),
-('2020-06-26 20:40:55', '13.00', 2, 3, 11, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué')
-;
+('2020-06-26 20:40:55', '13.00', 2, 3, 11, 'LIVRER', 'CB', 'Commande livrée', 'Paiement effectué');
 
 
 ------------------------------------------------------
 -- INSERT pizza_purchase
 -------------------------------------------------------
-INSERT INTO pizza_purchase (pizza_unit, pizza_id, purchase_id) VALUES
+INSERT INTO pizza_purchase (pizza_unit, pizza_id, purchase_id, unit_price) VALUES
 (1, 3, 1, '16.00'),
 (1, 1, 2, '14.00'),
 (1, 4, 3, '12.00'),
@@ -182,8 +175,7 @@ INSERT INTO pizza_purchase (pizza_unit, pizza_id, purchase_id) VALUES
 (1, 3, 12, '16.00'),
 (1, 1, 13, '14.00'),
 (2, 2, 13, '11.00'),
-(1, 4, 14, '13.00')
-;
+(1, 4, 14, '13.00');
 
 ------------------------------------------------------
 -- INSERT pizza_restaurant (stock_pizza)
@@ -194,23 +186,4 @@ INSERT INTO pizza_restaurant (available_amount, pizza_id, restaurant_id) VALUES
 (30, 1, 2), (40, 2, 2), (20, 3, 2), (20, 4, 2), (20, 5, 2),
 (35, 1, 3), (30, 2, 3), (30, 3, 3), (20, 4, 3), (15, 5, 3),
 (50, 1, 4), (20, 2, 4), (10, 3, 4), (30, 4, 4), (30, 5, 4),
-(20, 1, 5), (20, 2, 5), (20, 3, 5), (20, 4, 5), (10, 5, 5)
-;
-______________________________________________
---A FAIRE
-______________________________________________
-
-
-
-
-
-
--------------------------
--------------------------
---Supprimer table malgrè foreign_keys
---SET FOREIGN_KEY_CHECKS = 0; DROP TABLE '';
-
---Vider table malgré foreign_keys et reset 0
---SET FOREIGN_KEY_CHECKS = 0; TRUNCATE TABLE '';
-
-
+(20, 1, 5), (20, 2, 5), (20, 3, 5), (20, 4, 5), (10, 5, 5);
